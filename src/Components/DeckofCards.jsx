@@ -1,8 +1,11 @@
-import React from 'react'
-import CPContainer from './Computer Hand/CPContainer'
-import HandContainer from './Players Hand/HandContainer'
+import React, {useState} from 'react'
+import CPContainer from './ComputerHand/CPContainer'
+import HandContainer from './PlayersHand/HandContainer'
 
-export const DeckofCards = () => {
+export default function DeckofCards () {
+  const [playerHand, setPlayerHand] = useState([])
+  const [computerHand, setComputerHand] = useState([])
+  
   return (
     <div>
         <CPContainer />

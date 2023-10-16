@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const NavLayout = () => {
+export default function NavLayout () {
   return (
     <nav>NavLayout</nav>
   )

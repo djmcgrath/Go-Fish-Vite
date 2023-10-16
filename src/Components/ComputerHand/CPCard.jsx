@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CPCard = () => {
+export default function CPCard () {
   return (
     <div>CPCard</div>
   )

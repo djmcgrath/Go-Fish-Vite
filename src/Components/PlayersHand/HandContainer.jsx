@@ -1,7 +1,7 @@
 import React from 'react'
-import HandCard from './Players Hand/HandCard'
+import HandCard from './HandCard'
 
-export const HandContainer = () => {
+export default function HandContainer () {
   return (
     <div>
       <HandCard />

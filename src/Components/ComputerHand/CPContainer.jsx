@@ -1,7 +1,7 @@
 import React from 'react'
-import CPCard  from './Computer Hand/CPCard'
+import CPCard  from './CPCard'
 
-export const CPContainer = () => {
+export default function CPContainer () {
   return (
     <div>
       <CPCard />

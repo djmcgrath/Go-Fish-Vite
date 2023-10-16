@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const HandCard = () => {
+export default function HandCard () {
   return (
     <div>HandCard</div>
   )

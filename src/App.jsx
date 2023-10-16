@@ -7,6 +7,9 @@ import NavLayout from './Components/NavLayout'
 
 
 function App() {
+  const [playerTurn, setPlayerTurn] = useState(false)
+  const [computerTurn, setComputerTurn] = useState(false)
+  
 
   return (
     <>
