@@ -1,0 +1,43 @@
+{
+    "players": [
+        {
+            "id": 1,
+            "name": "Player1",
+            "wins": 0,
+            "losses": 0
+        },
+        {
+            "id": 2,
+            "name": "Player2",
+            "wins": 0,
+            "losses": 0
+        },
+        {
+            "id": 3,
+            "name": "Player3",
+            "wins": 0,
+            "losses": 0
+        },
+        {
+            "id": 4,
+            "name": "Player4",
+            "wins": 0,
+            "losses": 0
+        },
+        {
+            "id": 5,
+            "name": "Huckleberry",
+            "wins": 0,
+            "losses": 0
+        }
+    ],
+    "computer": [
+        {
+            "id": 1,
+            "name": "Computer",
+            "wins": 0,
+            "losses": 0
+        }
+    ]
+    
+}

@@ -1,7 +1,8 @@
 import React from 'react'
 
-export default function HandCard () {
+export default function HandCard ({player}) {
+  
   return (
-    <div>HandCard</div>
+    <img src={player.image}></img>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function CPCard () {
+export default function CPCard ({player}) {
   return (
-    <div>CPCard</div>
+    <img src={"https://www.deckofcardsapi.com/static/img/back.png"}></img>
   )
 }
