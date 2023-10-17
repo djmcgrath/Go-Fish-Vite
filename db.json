@@ -30,14 +30,5 @@
             "wins": 0,
             "losses": 0
         }
-    ],
-    "computer": [
-        {
-            "id": 1,
-            "name": "Computer",
-            "wins": 0,
-            "losses": 0
-        }
-    ]
-    
+    ] 
 }

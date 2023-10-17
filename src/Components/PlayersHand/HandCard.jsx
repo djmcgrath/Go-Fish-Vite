@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function HandCard ({player}) {
-  
+export default function HandCard ({player, compareCards}) {
+
   return (
-    <img src={player.image}></img>
+    <img onClick={()=> compareCards(player.value)} src={player.image}></img>
   )
 }
