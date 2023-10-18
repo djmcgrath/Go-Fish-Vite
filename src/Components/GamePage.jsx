@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import BothContainer from './BothContainer'
 
-export default function DeckofCards() {
+export default function DeckofCards({player}) {
   const [playerHand, setPlayerHand] = useState([])
   const [computerHand, setComputerHand] = useState([])
   const [deckId, setDeckId] = useState("")
@@ -53,7 +53,7 @@ export default function DeckofCards() {
     <>
       <div>
         <button type="button" className="btn btn-primary" onClick={displayNewDeck}>Click for New Deck and Deal</button>
-        <BothContainer computerHand={computerHand} playerHand={playerHand} drawNewCard={drawNewCard} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} />
+        <BothContainer computerHand={computerHand} playerHand={playerHand} drawNewCard={drawNewCard} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} player={player}/>
       </div>
     </>
   )

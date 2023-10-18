@@ -2,7 +2,7 @@ import React from 'react'
 import HandCard from './PlayersHand/HandCard'
 import CPCard from './ComputerHand/CPCard'
 
-export default function BothContainer({ playerHand, computerHand, drawNewCard, setPlayerHand, setComputerHand }) {
+export default function BothContainer({ playerHand, computerHand, drawNewCard, setPlayerHand, setComputerHand , player}) {
 
     function comparePlayerHand (card) {
         const filterCCards = computerHand.filter((computerCard) => {
@@ -56,7 +56,7 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
                 {computerHand.map((player, index) => (<CPCard key={index} player={player} compareComputerHand={compareComputerHand}/>))}
             </div>
             <div>
-                <h3>Player's Hand: </h3>
+                <h3>{`${player}\'s Hand:`}</h3>
 
                 {playerHand.map((player, index) => (<HandCard key={index} player={player} comparePlayerHand={comparePlayerHand} />))}
                    

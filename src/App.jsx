@@ -17,6 +17,7 @@ import NavLayout from "./Components/NavLayout"
 
 function App() {
   const [playerInfo, setPlayerInfo] = useState([])
+  const [player, setPlayer] = useState("")
 
   useEffect(() =>{
     fetch("http://localhost:3000/players")
@@ -33,8 +34,8 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<NavLayout />}>
-        <Route index element={<PlayerPage playerInfo={playerInfo} handleNewPlayer={handleNewPlayer} />} />
-        <Route path="/game" element={<GamePage />} />
+        <Route index element={<PlayerPage playerInfo={playerInfo} handleNewPlayer={handleNewPlayer} setPlayer={setPlayer}/>} />
+        <Route path="/game" element={<GamePage player={player}/>} />
         <Route path="/scorecard" element={<ScoreCard playerInfo={playerInfo} />} />
       </Route>
     )

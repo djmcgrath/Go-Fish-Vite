@@ -1,6 +1,10 @@
 import {useState} from 'react'
+import {useNavigate} from "react-router-dom"
 
-export default function PlayerPage ({handleNewPlayer, playerInfo}) {
+
+export default function PlayerPage ({handleNewPlayer, playerInfo,setPlayer}) {
+
+  const navigate = useNavigate()
   const [playerForm, setPlayerForm] = useState({
     name: "",
     wins: 0,
@@ -9,10 +13,10 @@ export default function PlayerPage ({handleNewPlayer, playerInfo}) {
   // const players = useLoaderData()
 
   const options = playerInfo.map(player => (
-    <option key={player.id} value={player.id}>{player.name}</option>
+    <option key={player.id} value={player.name}>{player.name}</option>
   ));
   
-  function handleChange (e) {
+  function handleChange(e) {
     setPlayerForm({
         ...playerForm,
         [e.target.name]: e.target.value
@@ -42,9 +46,16 @@ function handleSubmit (e) {
     })
 
 }
+
+function changeUser(e){
+  setPlayer(e.target.value)
+  navigate("/game")
+
+
+}
   return (
     <div>
-      <select>
+      <select onChange={(e)=>changeUser(e)}>
         {options}
       </select>
       <form onSubmit={handleSubmit}>
