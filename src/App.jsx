@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 import {
@@ -16,19 +16,26 @@ import NavLayout from "./Components/NavLayout"
 
 
 function App() {
-  const [playerTurn, setPlayerTurn] = useState(false)
+  const [playerInfo, setPlayerInfo] = useState([])
 
-  const userLoader = async () => {
-    const response = await fetch("http://localhost:3000/players")
-    return response.json()
+  useEffect(() =>{
+    fetch("http://localhost:3000/players")
+    .then(res => res.json())
+    .then(res => {
+      setPlayerInfo(res)
+    })
+  }, [])
+
+  function handleNewPlayer(newPlayer) {
+    setPlayerInfo([...playerInfo, newPlayer])
   }
   
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<NavLayout />}>
-        <Route index element={<PlayerPage />} loader={userLoader} />
+        <Route index element={<PlayerPage playerInfo={playerInfo} handleNewPlayer={handleNewPlayer} />} />
         <Route path="/game" element={<GamePage />} />
-        <Route path="/scorecard" element={<ScoreCard />} loader={userLoader} />
+        <Route path="/scorecard" element={<ScoreCard playerInfo={playerInfo} />} />
       </Route>
     )
   )

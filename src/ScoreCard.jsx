@@ -1,9 +1,9 @@
 import {useLoaderData} from 'react-router-dom'
 
-export default function ScoreCard () {
-  const players = useLoaderData()
+export default function ScoreCard ({playerInfo}) {
+  // const players = useLoaderData()
 
-  const tdName = players.map((player) => (
+  const tdName = playerInfo.map((player) => (
     <tr key={player.id} scope="row">
       <td>{player.name}</td>
       <td>{player.wins}</td>

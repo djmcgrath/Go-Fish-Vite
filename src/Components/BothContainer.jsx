@@ -9,11 +9,14 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
             return computerCard.value === card})
         console.log(card)
 
+        let compCards = [...computerHand]
+
         filterCCards.forEach(element => {
-            let compCards = [computerHand.filter(compCard => compCard != element)]
+            compCards = compCards.filter(compCard => compCard != element)
             console.log(compCards)
-            setComputerHand(compCards)
+            
         });
+        setComputerHand(compCards)
 
         if (filterCCards.length > 0) {
             console.log("correct guess!")
@@ -28,10 +31,12 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
             return playerCard.value === card})
         console.log(filterPCards)
 
+        let playerCards = [...playerHand]
+
         filterPCards.forEach(element => {
-            let playerCards = [playerHand.filter(playCard => playCard != element)]
-            setPlayerHand(playerCards)
+            playerCards = playerCards.filter(playCard => playCard != element)
         });
+        setPlayerHand(playerCards)
         console.log(playerHand)
 
         if (filterPCards.length > 0) {
@@ -46,16 +51,15 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
     return (
         <div>
             <div>
-                <h3>Computer's Hand: </h3>
-                {computerHand.length === 0 ? null : computerHand.length >= 7 ? 
-                    computerHand.map((player, index) => (<CPCard key={index} player={player} compareComputerHand={compareComputerHand}/>))
-                    :computerHand[0].map((player, index) => (<CPCard key={index} player={player} compareComputerHand={compareComputerHand}/>))}
+                <h3>Computer's Hand: </h3> 
+            
+                {computerHand.map((player, index) => (<CPCard key={index} player={player} compareComputerHand={compareComputerHand}/>))}
             </div>
             <div>
                 <h3>Player's Hand: </h3>
-                {playerHand.length === 0 ? null : playerHand.length >= 7 ?
-                    playerHand.map((player, index) => (<HandCard key={index} player={player} comparePlayerHand={comparePlayerHand} />))
-                    :playerHand[0].map((player, index) => (<HandCard key={index} player={player} comparePlayerHand={comparePlayerHand} />))}
+
+                {playerHand.map((player, index) => (<HandCard key={index} player={player} comparePlayerHand={comparePlayerHand} />))}
+                   
             </div>
         </div>
     )
