@@ -28,7 +28,7 @@ function App() {
       <Route path="/" element={<NavLayout />}>
         <Route index element={<PlayerPage />} loader={userLoader} />
         <Route path="/game" element={<GamePage />} />
-        <Route path="/scorecard" element={<ScoreCard />} />
+        <Route path="/scorecard" element={<ScoreCard />} loader={userLoader} />
       </Route>
     )
   )

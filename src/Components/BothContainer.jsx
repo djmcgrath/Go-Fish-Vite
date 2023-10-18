@@ -7,7 +7,7 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
     function comparePlayerHand (card) {
         const filterCCards = computerHand.filter((computerCard) => {
             return computerCard.value === card})
-        console.log(filterCCards)
+        console.log(card)
 
         filterCCards.forEach(element => {
             let compCards = [computerHand.filter(compCard => compCard != element)]
