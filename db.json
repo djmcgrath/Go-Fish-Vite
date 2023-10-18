@@ -65,6 +65,12 @@
       "wins": 0,
       "losses": 0,
       "id": 14
+    },
+    {
+      "name": "Juan",
+      "wins": 0,
+      "losses": 0,
+      "id": 15
     }
   ]
 }
