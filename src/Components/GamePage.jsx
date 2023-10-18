@@ -5,7 +5,6 @@ export default function DeckofCards() {
   const [playerHand, setPlayerHand] = useState([])
   const [computerHand, setComputerHand] = useState([])
   const [deckId, setDeckId] = useState("")
-  const [drawnCard, setDrawnCard] = useState([])
 
   function splitDeck(res) {
     const numberOfCards = res.cards.length;
@@ -35,13 +34,16 @@ export default function DeckofCards() {
   }
 
   function drawNewCard(cb) {
+    console.log(cb)
     fetch(`https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
       .then(res => res.json())
       .then(res => {
         if (cb === "user"){
+          console.log("user should be drawing")
           setPlayerHand(prevPlayerHand => [...prevPlayerHand, res.cards[0]])
-        }else setComputerHand(prevPlayerHand => [...prevPlayerHand, res.cards[0]])
-        //  setDrawnCard(res.cards[0].image)
+        }else if (cb === "computer") {
+          setComputerHand(prevComputerHand => [...prevComputerHand, res.cards[0]])
+        }
       })
   }
 
@@ -50,9 +52,8 @@ export default function DeckofCards() {
   return (
     <>
       <div>
-        <button type="button" className="btn btn-primary" onClick={displayNewDeck}>Click for New Deck</button>
-        <button type="button" className="btn btn-primary" onClick={drawNewCard}>Draw New Card</button>
-        <BothContainer computerHand={computerHand} playerHand={playerHand} drawNewCard={drawNewCard} />
+        <button type="button" className="btn btn-primary" onClick={displayNewDeck}>Click for New Deck and Deal</button>
+        <BothContainer computerHand={computerHand} playerHand={playerHand} drawNewCard={drawNewCard} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} />
       </div>
     </>
   )

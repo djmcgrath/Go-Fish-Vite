@@ -2,33 +2,60 @@ import React from 'react'
 import HandCard from './PlayersHand/HandCard'
 import CPCard from './ComputerHand/CPCard'
 
-export default function BothContainer({ playerHand, computerHand, drawNewCard }) {
+export default function BothContainer({ playerHand, computerHand, drawNewCard, setPlayerHand, setComputerHand }) {
 
-
-    const computerCards = (computerHand.map((player) => player.value))
-    console.log(computerCards)
-    console.log(computerHand)
-
-    function compareCards(card) {
-        const findCards = computerHand.find((computerCard) => {
+    function comparePlayerHand (card) {
+        const filterCCards = computerHand.filter((computerCard) => {
             return computerCard.value === card})
-        
-        console.log(findCards)
+        console.log(filterCCards)
 
-        if (findCards.value === card) {
-            console.log("inside")
-            drawNewCard("computer")
+        filterCCards.forEach(element => {
+            let compCards = [computerHand.filter(compCard => compCard != element)]
+            console.log(compCards)
+            setComputerHand(compCards)
+        });
+
+        if (filterCCards.length > 0) {
+            console.log("correct guess!")
+            setPlayerHand([...playerHand, ...filterCCards])
         } else {
             drawNewCard("user")
         }
     }
+
+    function compareComputerHand (card) {
+        const filterPCards = playerHand.filter((playerCard) => {
+            return playerCard.value === card})
+        console.log(filterPCards)
+
+        filterPCards.forEach(element => {
+            let playerCards = [playerHand.filter(playCard => playCard != element)]
+            setPlayerHand(playerCards)
+        });
+        console.log(playerHand)
+
+        if (filterPCards.length > 0) {
+            console.log("computer is correct")
+            setComputerHand([...computerHand, ...filterPCards])
+        } else {
+            drawNewCard("computer")
+        }
+    }
+
+
     return (
         <div>
             <div>
-                {computerHand.map((player, index) => (<CPCard key={index} player={player} />))}
+                <h3>Computer's Hand: </h3>
+                {computerHand.length === 0 ? null : computerHand.length >= 7 ? 
+                    computerHand.map((player, index) => (<CPCard key={index} player={player} compareComputerHand={compareComputerHand}/>))
+                    :computerHand[0].map((player, index) => (<CPCard key={index} player={player} compareComputerHand={compareComputerHand}/>))}
             </div>
             <div>
-                {playerHand.map((player, index) => (<HandCard key={index} player={player} compareCards={compareCards} />))}
+                <h3>Player's Hand: </h3>
+                {playerHand.length === 0 ? null : playerHand.length >= 7 ?
+                    playerHand.map((player, index) => (<HandCard key={index} player={player} comparePlayerHand={comparePlayerHand} />))
+                    :playerHand[0].map((player, index) => (<HandCard key={index} player={player} comparePlayerHand={comparePlayerHand} />))}
             </div>
         </div>
     )

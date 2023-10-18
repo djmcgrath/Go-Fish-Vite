@@ -17,7 +17,6 @@ import NavLayout from "./Components/NavLayout"
 
 function App() {
   const [playerTurn, setPlayerTurn] = useState(false)
-  const [computerTurn, setComputerTurn] = useState(false)
 
   const userLoader = async () => {
     const response = await fetch("http://localhost:3000/players")
