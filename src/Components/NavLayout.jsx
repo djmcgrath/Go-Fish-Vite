@@ -4,7 +4,7 @@ export default function NavLayout () {
   return (
     <div>
        <header> 
-      <nav>
+      <nav >
         <h1 className='handtext'>Go-Fish</h1>
         <button className='dropdown'><NavLink to="/">Player Select</NavLink></button>
         <button className='dropdown'><NavLink to="/game">Game</NavLink></button>

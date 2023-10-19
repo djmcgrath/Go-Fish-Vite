@@ -65,6 +65,24 @@
       "wins": 0,
       "losses": 0,
       "id": 11
+    },
+    {
+      "name": "Chimee",
+      "wins": 0,
+      "losses": 0,
+      "id": 12
+    },
+    {
+      "name": "Danny",
+      "wins": 0,
+      "losses": 0,
+      "id": 13
+    },
+    {
+      "name": "Nifa",
+      "wins": 0,
+      "losses": 0,
+      "id": 14
     }
   ]
 }

@@ -13,11 +13,12 @@ import ScoreCard from './ScoreCard'
 import NavLayout from "./Components/NavLayout"
 
 
-
 function App() {
   const [playerInfo, setPlayerInfo] = useState([])
   const [player, setPlayer] = useState("")
   const [playerTurn, setPlayerTurn] = useState(true)
+  const [playerHand, setPlayerHand] = useState([])
+  const [computerHand, setComputerHand] = useState([])
 
   useEffect(() =>{
     fetch("http://localhost:3000/players")
@@ -30,13 +31,16 @@ function App() {
   function handleNewPlayer(newPlayer) {
     setPlayerInfo([...playerInfo, newPlayer])
   }
+
+  // console.log(player)
+
   
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<NavLayout />}>
         <Route index element={<PlayerPage playerInfo={playerInfo} handleNewPlayer={handleNewPlayer} setPlayer={setPlayer}/>} />
-        <Route path="/game" element={<GamePage player={player}/>} />
-        <Route path="/scorecard" element={<ScoreCard playerInfo={playerInfo} />} />
+        <Route path="/game" element={<GamePage playerHand={playerHand} setPlayerHand={setPlayerHand} computerHand={computerHand} setComputerHand={setComputerHand} player={player} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn}/>} />
+        <Route path="/scorecard" element={<ScoreCard playerHand={playerHand} setPlayerHand={setPlayerHand} computerHand={computerHand} setComputerHand={setComputerHand} player={player} playerInfo={playerInfo} setPlayerInfo={setPlayerInfo} />} />
       </Route>
     )
   )

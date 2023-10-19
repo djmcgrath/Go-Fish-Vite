@@ -12,8 +12,8 @@ export default function PlayerPage ({handleNewPlayer, playerInfo,setPlayer}) {
   })
   // const players = useLoaderData()
 
-  const options = playerInfo.map(player => (
-    <option key={player.id} value={player.name}>{player.name}</option>
+  const options = playerInfo.map((player, index) => (
+    <option key={player.id} value={index}>{player.name}</option>
   ));
   
   function handleChange(e) {
@@ -48,10 +48,8 @@ function handleSubmit (e) {
 }
 
 function changeUser(e){
-  setPlayer(e.target.value)
+  setPlayer(playerInfo[e.target.value])
   navigate("/game")
-
-
 }
   return (
     <div>

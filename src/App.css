@@ -80,4 +80,13 @@
   background-color: #1a1a1a;
   border-radius: 8px;
   color: whitesmoke;
+  width: auto;
 }
+
+.turn {
+  background-color: red;
+  border-radius: 8px;
+  color: whitesmoke;
+  width: auto;
+}
+

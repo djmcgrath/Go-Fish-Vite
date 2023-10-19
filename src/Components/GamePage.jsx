@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import {useNavigate} from "react-router-dom"
 import BothContainer from './BothContainer'
 
-export default function DeckofCards({player}) {
-  const [playerHand, setPlayerHand] = useState([])
-  const [computerHand, setComputerHand] = useState([])
+export default function DeckofCards({player, playerTurn, setPlayerTurn, computerHand, setComputerHand, playerHand, setPlayerHand}) {
   const [deckId, setDeckId] = useState("")
+  
+  const navigate = useNavigate()
 
   function splitDeck(res) {
     const numberOfCards = res.cards.length;
@@ -38,6 +39,9 @@ export default function DeckofCards({player}) {
     fetch(`https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
       .then(res => res.json())
       .then(res => {
+        if (res.cards.length === 0){
+          return navigate("/scorecard")
+        }
         if (cb === "user"){
           console.log("user should be drawing")
           setPlayerHand(prevPlayerHand => [...prevPlayerHand, res.cards[0]])
@@ -47,13 +51,15 @@ export default function DeckofCards({player}) {
       })
   }
 
+  console.log(player)
 
 
   return (
     <>
       <div>
-        <button className="dropdown" onClick={displayNewDeck}>Click for New Deck and Deal</button>
-        <BothContainer computerHand={computerHand} playerHand={playerHand} drawNewCard={drawNewCard} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} player={player}/>
+        <button type="button" className="btn btn-success" onClick={displayNewDeck}>Click for New Deck and Deal</button>
+        { playerTurn? <h1 className='turn'>{player.name}'s turn</h1> : <h1 className='turn'>Computer's turn</h1>}
+        <BothContainer computerHand={computerHand} playerHand={playerHand} drawNewCard={drawNewCard} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} player={player} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn}/>
       </div>
     </>
   )
