@@ -55,10 +55,10 @@ function changeUser(e){
 }
   return (
     <div>
-      <select onChange={(e)=>changeUser(e)}>
+      <select className="dropdown" onChange={(e)=>changeUser(e)}>
         {options}
       </select>
-      <form onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <input
           type="text" 
           name="name" 

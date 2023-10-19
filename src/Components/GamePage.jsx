@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import BothContainer from './BothContainer'
 
 export default function DeckofCards({player}) {
@@ -52,7 +52,7 @@ export default function DeckofCards({player}) {
   return (
     <>
       <div>
-        <button type="button" className="btn btn-primary" onClick={displayNewDeck}>Click for New Deck and Deal</button>
+        <button className="dropdown" onClick={displayNewDeck}>Click for New Deck and Deal</button>
         <BothContainer computerHand={computerHand} playerHand={playerHand} drawNewCard={drawNewCard} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} player={player}/>
       </div>
     </>

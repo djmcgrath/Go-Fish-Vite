@@ -51,12 +51,12 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
     return (
         <div>
             <div>
-                <h3>Computer's Hand: </h3> 
+                <h3 className='handtext'>Computer's Hand: </h3> 
             
                 {computerHand.map((player, index) => (<CPCard key={index} player={player} compareComputerHand={compareComputerHand}/>))}
             </div>
             <div>
-                <h3>{`${player}\'s Hand:`}</h3>
+                <h3 className='handtext'>{`${player}\'s Hand:`}</h3>
 
                 {playerHand.map((player, index) => (<HandCard key={index} player={player} comparePlayerHand={comparePlayerHand} />))}
                    

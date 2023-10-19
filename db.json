@@ -13,64 +13,58 @@
       "losses": 0
     },
     {
-      "id": 3,
-      "name": "Player3",
-      "wins": 0,
-      "losses": 0
-    },
-    {
-      "id": 4,
-      "name": "Player4",
-      "wins": 0,
-      "losses": 0
-    },
-    {
-      "id": 5,
-      "name": "Huckleberry",
-      "wins": 0,
-      "losses": 0
-    },
-    {
       "name": "poop",
       "wins": 0,
       "losses": 0,
-      "id": 6
+      "id": 3
     },
     {
       "name": "Taylor",
       "wins": 0,
       "losses": 0,
-      "id": 7
+      "id": 4
     },
     {
       "name": "Dylan",
       "wins": 0,
       "losses": 0,
-      "id": 8
+      "id": 5
     },
     {
       "name": "sky",
       "wins": 0,
       "losses": 0,
-      "id": 12
+      "id": 6
     },
     {
       "name": "stephen",
       "wins": 0,
       "losses": 0,
-      "id": 13
+      "id": 7
     },
     {
       "name": "Buzz",
       "wins": 0,
       "losses": 0,
-      "id": 14
+      "id": 8
     },
     {
       "name": "Juan",
       "wins": 0,
       "losses": 0,
-      "id": 15
+      "id": 9
+    },
+    {
+      "name": "Dane",
+      "wins": 0,
+      "losses": 0,
+      "id": 10
+    },
+    {
+      "name": "Boba",
+      "wins": 0,
+      "losses": 0,
+      "id": 11
     }
   ]
 }

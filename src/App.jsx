@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -18,6 +17,7 @@ import NavLayout from "./Components/NavLayout"
 function App() {
   const [playerInfo, setPlayerInfo] = useState([])
   const [player, setPlayer] = useState("")
+  const [playerTurn, setPlayerTurn] = useState(true)
 
   useEffect(() =>{
     fetch("http://localhost:3000/players")
