@@ -10,7 +10,6 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
         } else{
         const filterCCards = computerHand.filter((computerCard) => {
             return computerCard.value === card})
-        console.log(card)
 
         let compCards = [...computerHand]
 
@@ -32,7 +31,6 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
     function compareComputerHand (card) {
         const filterPCards = playerHand.filter((playerCard) => {
             return playerCard.value === card})
-        console.log(filterPCards)
 
         let playerCards = [...playerHand]
 
@@ -56,7 +54,6 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
             alert(`It is ${player.name}'s turn`)
         } else{
             let randomCard = computerHand[Math.floor(Math.random() * computerHand.length)]
-            console.log(randomCard.value)
             compareComputerHand(randomCard.value)  
         }
     }
@@ -66,16 +63,13 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
         <div>
             <div>
                 <h3 className='handtext'>{`"Computer's" Hand:`}</h3>
-                <div>
-                    <button type="button" className="btn btn-danger" onClick={handleCPUTurn}>CPU's Turn</button>
-                </div>
                 {computerHand.map((player, index) => (<CPCard key={index} player={player} compareComputerHand={compareComputerHand}/>))}
             </div>
+            <button type="button" className="btn btn-warning" onClick={handleCPUTurn}>CPU's Turn</button>
+            { playerTurn? <h1 className='turn'>{player.name}'s turn</h1> : <h1 className='turn'>Computer's turn</h1>}
             <div>
                 <h3 className='handtext'>{`${player.name}\'s Hand:`}</h3>
-
                 {playerHand.map((player, index) => (<HandCard key={index} player={player} comparePlayerHand={comparePlayerHand} />))}
-                   
             </div>
         </div>
     )

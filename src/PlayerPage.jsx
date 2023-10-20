@@ -10,7 +10,6 @@ export default function PlayerPage ({handleNewPlayer, playerInfo,setPlayer}) {
     wins: 0,
     losses: 0
   })
-  // const players = useLoaderData()
 
   const options = playerInfo.map((player, index) => (
     <option key={player.id} value={index}>{player.name}</option>

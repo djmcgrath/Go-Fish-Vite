@@ -29,13 +29,11 @@ export default function DeckofCards({player, playerTurn, setPlayerTurn, computer
       .then(res => {
         splitDeck(res)
         setDeckId(res["deck_id"])
-        console.log(res)
       })
 
   }
 
   function drawNewCard(cb) {
-    console.log(cb)
     fetch(`https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
       .then(res => res.json())
       .then(res => {
@@ -51,14 +49,10 @@ export default function DeckofCards({player, playerTurn, setPlayerTurn, computer
       })
   }
 
-  console.log(player)
-
-
   return (
     <>
       <div>
-        <button type="button" className="btn btn-success" onClick={displayNewDeck}>Click for New Deck and Deal</button>
-        { playerTurn? <h1 className='turn'>{player.name}'s turn</h1> : <h1 className='turn'>Computer's turn</h1>}
+        <button type="button" className="btn btn-success" onClick={displayNewDeck}>Click to Start:</button>
         <BothContainer computerHand={computerHand} playerHand={playerHand} drawNewCard={drawNewCard} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} player={player} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn}/>
       </div>
     </>

@@ -9,18 +9,18 @@
     {
       "id": 2,
       "name": "Player2",
-      "wins": 0,
+      "wins": 1,
       "losses": 0
     },
     {
       "name": "poop",
-      "wins": 0,
+      "wins": 7,
       "losses": 0,
       "id": 3
     },
     {
       "name": "Taylor",
-      "wins": 0,
+      "wins": 1,
       "losses": 0,
       "id": 4
     },
@@ -32,25 +32,25 @@
     },
     {
       "name": "sky",
-      "wins": 0,
+      "wins": 2,
       "losses": 0,
       "id": 6
     },
     {
       "name": "stephen",
-      "wins": 0,
+      "wins": 20,
       "losses": 0,
       "id": 7
     },
     {
       "name": "Buzz",
-      "wins": 0,
+      "wins": 1,
       "losses": 0,
       "id": 8
     },
     {
       "name": "Juan",
-      "wins": 0,
+      "wins": 3,
       "losses": 0,
       "id": 9
     },
@@ -62,27 +62,15 @@
     },
     {
       "name": "Boba",
-      "wins": 0,
+      "wins": 1803,
       "losses": 0,
       "id": 11
     },
     {
-      "name": "Chimee",
-      "wins": 0,
+      "name": "Fisher",
+      "wins": 1,
       "losses": 0,
       "id": 12
-    },
-    {
-      "name": "Danny",
-      "wins": 0,
-      "losses": 0,
-      "id": 13
-    },
-    {
-      "name": "Nifa",
-      "wins": 0,
-      "losses": 0,
-      "id": 14
     }
   ]
 }
