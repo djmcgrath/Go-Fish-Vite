@@ -28,6 +28,19 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
     }
     }
 
+    // handleRemove4(value)
+
+    // function checkPlayerHand(value){
+    //     const cardSet = playerHand.filter((card)=>{
+    //         return card.value == value
+    //     })
+    //     if (cardSet.length()>3){
+    //         handleRemove4(value)
+    //     }
+    // }
+
+
+
     function compareComputerHand (card) {
         const filterPCards = playerHand.filter((playerCard) => {
             return playerCard.value === card})
