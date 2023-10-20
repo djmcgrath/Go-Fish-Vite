@@ -38,7 +38,7 @@ function App() {
       <Route path="/" element={<NavLayout />}>
         <Route index element={<PlayerPage playerInfo={playerInfo} handleNewPlayer={handleNewPlayer} setPlayer={setPlayer}/>} />
         <Route path="/game" element={<GamePage playerHand={playerHand} setPlayerHand={setPlayerHand} computerHand={computerHand} setComputerHand={setComputerHand} player={player} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn}/>} />
-        <Route path="/scorecard" element={<ScoreCard playerHand={playerHand} setPlayer={setPlayer} setPlayerHand={setPlayerHand} setPlayerInfo={setPlayerInfo} computerHand={computerHand} setComputerHand={setComputerHand} player={player} playerInfo={playerInfo} setPlayerInfo={setPlayerInfo} />} />
+        <Route path="/scorecard" element={<ScoreCard playerHand={playerHand} setPlayer={setPlayer} setPlayerHand={setPlayerHand} setPlayerInfo={setPlayerInfo} computerHand={computerHand} setComputerHand={setComputerHand} player={player} playerInfo={playerInfo}/>} />
       </Route>
     )
   )
