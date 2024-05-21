@@ -13,12 +13,6 @@
       "losses": 0
     },
     {
-      "name": "poop",
-      "wins": 7,
-      "losses": 0,
-      "id": 3
-    },
-    {
       "name": "Taylor",
       "wins": 1,
       "losses": 0,
@@ -77,6 +71,12 @@
       "wins": 0,
       "losses": 1,
       "id": 13
+    },
+    {
+      "name": "New User",
+      "wins": 1,
+      "losses": 0,
+      "id": 14
     }
   ]
 }

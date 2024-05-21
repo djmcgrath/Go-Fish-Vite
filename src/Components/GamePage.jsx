@@ -52,7 +52,7 @@ export default function DeckofCards({player, playerTurn, setPlayerTurn, computer
   return (
     <>
       <div>
-        <button type="button" className="btn btn-success" onClick={displayNewDeck}>Click to Start:</button>
+        <button type="button" className="btn btn-info" onClick={displayNewDeck}>Click to Start:</button>
         <BothContainer computerHand={computerHand} playerHand={playerHand} drawNewCard={drawNewCard} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} player={player} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn}/>
       </div>
     </>
