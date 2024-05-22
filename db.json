@@ -9,7 +9,7 @@
     {
       "id": 2,
       "name": "Player2",
-      "wins": 1,
+      "wins": 2,
       "losses": 0
     },
     {
@@ -20,7 +20,7 @@
     },
     {
       "name": "Dylan",
-      "wins": 0,
+      "wins": 1,
       "losses": 0,
       "id": 5
     },
@@ -56,7 +56,7 @@
     },
     {
       "name": "Boba",
-      "wins": 1803,
+      "wins": 1804,
       "losses": 0,
       "id": 11
     },
