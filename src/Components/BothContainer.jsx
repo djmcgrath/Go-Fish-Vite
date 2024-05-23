@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 export default function BothContainer({ playerHand, computerHand, drawNewCard, setPlayerHand, setComputerHand , player, playerTurn, setPlayerTurn}) {
 
     function comparePlayerHand (card) {
-        console.log('Comparing player hand:', card)
         if(playerTurn === true){
             const filterCCards = computerHand.filter((computerCard) => {
                 return computerCard.value === card})
@@ -22,11 +21,9 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
     
             if (filterCCards.length > 0) {
                 console.log("correct guess!")
-                const newPlayerHand = playerHand.filter(playerCard =>!filterCCards.some(guess => guess.value === playerCard.value))
-                setPlayerHand(newPlayerHand);
+                setPlayerHand([...playerHand, ...filterCCards])
                 // checkForFourOfAKind(playerHand)
             } else {
-                console.log('Drawing new card:', "user")
                 drawNewCard("user")
                 setPlayerTurn(false)
             }
@@ -75,7 +72,6 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
 
 
     function compareComputerHand (card) {
-        console.log('Comparing computer hand:', card)
         if (playerTurn === false){
             const filterPCards = playerHand.filter((playerCard) => {
                 return playerCard.value === card})
@@ -89,14 +85,16 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
     
             if (filterPCards.length > 0) {
                 console.log("computer is correct")
-                const newCompHand = computerHand.filter(compCard =>!filterPCards.some(guess => guess.value === compCard.value))
-                setComputerHand(newCompHand)
-                setPlayerTurn(true)
+                setComputerHand([...computerHand, ...filterPCards])
+                setTimeout(() => {
+                    handleCPUTurn()
+                },2000)
+                // setPlayerTurn(false)
+                // console.log("set player turn to false")
                 // checkForFourOfAKind(computerHand)
             } else {
-                console.log('Drawing new card:', "computer")
                 drawNewCard("computer")
-                setPlayerTurn(false)
+                setPlayerTurn(true)
             }
         } else {
             alert(`It is ${player.name}'s turn`)
