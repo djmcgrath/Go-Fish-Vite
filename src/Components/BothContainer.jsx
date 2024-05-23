@@ -6,30 +6,34 @@ import { useEffect } from 'react'
 export default function BothContainer({ playerHand, computerHand, drawNewCard, setPlayerHand, setComputerHand , player, playerTurn, setPlayerTurn}) {
 
     function comparePlayerHand (card) {
-        if(playerTurn === false){
-            alert(`It is the computer's turn`)
+        console.log('Comparing player hand:', card)
+        if(playerTurn === true){
+            const filterCCards = computerHand.filter((computerCard) => {
+                return computerCard.value === card})
+    
+            console.log(filterCCards)
+            let compCards = [...computerHand]
+    
+            filterCCards.forEach(element => {
+                compCards = compCards.filter(compCard => compCard != element)
+            });
+            // console.log(compCards)
+            setComputerHand(compCards)
+    
+            if (filterCCards.length > 0) {
+                console.log("correct guess!")
+                const newPlayerHand = playerHand.filter(playerCard =>!filterCCards.some(guess => guess.value === playerCard.value))
+                setPlayerHand(newPlayerHand);
+                // checkForFourOfAKind(playerHand)
+            } else {
+                console.log('Drawing new card:', "user")
+                drawNewCard("user")
+                setPlayerTurn(false)
+            }
+            
         } else{
-        const filterCCards = computerHand.filter((computerCard) => {
-            return computerCard.value === card})
-
-        console.log(filterCCards)
-        let compCards = [...computerHand]
-
-        filterCCards.forEach(element => {
-            compCards = compCards.filter(compCard => compCard != element)
-        });
-        // console.log(compCards)
-        setComputerHand(compCards)
-
-        if (filterCCards.length > 0) {
-            console.log("correct guess!")
-            setPlayerHand([...playerHand, ...filterCCards])
-            // checkForFourOfAKind(playerHand)
-        } else {
-            drawNewCard("user")
-            setPlayerTurn(!playerTurn)
+            alert(`It is the computer's turn`)
         }
-    }
     }
 
    
@@ -71,39 +75,46 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
 
 
     function compareComputerHand (card) {
-        const filterPCards = playerHand.filter((playerCard) => {
-            return playerCard.value === card})
-
-        let playerCards = [...playerHand]
-
-        filterPCards.forEach(element => {
-            playerCards = playerCards.filter(playCard => playCard != element)
-        });
-        setPlayerHand(playerCards)
-
-        if (filterPCards.length > 0) {
-            console.log("computer is correct")
-            setComputerHand([...computerHand, ...filterPCards])
-            // checkForFourOfAKind(computerHand)
+        console.log('Comparing computer hand:', card)
+        if (playerTurn === false){
+            const filterPCards = playerHand.filter((playerCard) => {
+                return playerCard.value === card})
+    
+            let playerCards = [...playerHand]
+    
+            filterPCards.forEach(element => {
+                playerCards = playerCards.filter(playCard => playCard != element)
+            });
+            setPlayerHand(playerCards)
+    
+            if (filterPCards.length > 0) {
+                console.log("computer is correct")
+                const newCompHand = computerHand.filter(compCard =>!filterPCards.some(guess => guess.value === compCard.value))
+                setComputerHand(newCompHand)
+                setPlayerTurn(true)
+                // checkForFourOfAKind(computerHand)
+            } else {
+                console.log('Drawing new card:', "computer")
+                drawNewCard("computer")
+                setPlayerTurn(false)
+            }
         } else {
-            drawNewCard("computer")
-            setPlayerTurn(!playerTurn)
+            alert(`It is ${player.name}'s turn`)
         }
+        
     }
 
     useEffect( () => {
-        if (!playerTurn) {
-            handleCPUTurn()
+        if (playerTurn === false) {
+            setTimeout(() => {
+                handleCPUTurn()
+            }, 2000)
         }
     }, [playerTurn]) 
 
     function handleCPUTurn(){
-        if(playerTurn === true){
-            alert(`It is ${player.name}'s turn`)
-        } else{
-            let randomCard = computerHand[Math.floor(Math.random() * computerHand.length)]
-            compareComputerHand(randomCard.value)  
-        }
+        let randomCard = computerHand[Math.floor(Math.random() * computerHand.length)]
+        compareComputerHand(randomCard.value)
     }
 
 
@@ -115,7 +126,7 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
                     {computerHand.map((player, index) => (<CPCard key={index} player={player} compareComputerHand={compareComputerHand}/>))}
                 </div>
             </div>  
-            { playerTurn ? <h1 className='turn'>{player.name}'s turn</h1> : <h1 className='turn'>Computer's turn</h1> }
+            { playerTurn === true ? <h1 className='turn'>{player.name}'s turn</h1> : <h1 className='turn'>Computer's turn</h1> }
             <div className='rightColumn'>
                 <h3 className='handtext'>{`${player.name}\'s Hand:`}</h3>
                 <div className='rightColumn'>
