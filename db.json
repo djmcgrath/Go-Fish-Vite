@@ -77,6 +77,12 @@
       "wins": 1,
       "losses": 0,
       "id": 14
+    },
+    {
+      "name": "test",
+      "wins": 0,
+      "losses": 0,
+      "id": 15
     }
   ]
 }

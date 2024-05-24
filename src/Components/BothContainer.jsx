@@ -6,31 +6,32 @@ import { useEffect } from 'react'
 export default function BothContainer({ playerHand, computerHand, drawNewCard, setPlayerHand, setComputerHand , player, playerTurn, setPlayerTurn}) {
 
     function comparePlayerHand (card) {
-        if(playerTurn === true){
-            const filterCCards = computerHand.filter((computerCard) => {
-                return computerCard.value === card})
-    
-            console.log(filterCCards)
-            let compCards = [...computerHand]
-    
-            filterCCards.forEach(element => {
-                compCards = compCards.filter(compCard => compCard != element)
-            });
-            // console.log(compCards)
-            setComputerHand(compCards)
-    
-            if (filterCCards.length > 0) {
-                console.log("correct guess!")
-                setPlayerHand([...playerHand, ...filterCCards])
-                // checkForFourOfAKind(playerHand)
-            } else {
-                drawNewCard("user")
-                setPlayerTurn(false)
-            }
-            
-        } else{
+        if(playerTurn === false){
             alert(`It is the computer's turn`)
+        } else{
+        const filterCCards = computerHand.filter((computerCard) => {
+            return computerCard.value === card})
+
+        console.log(filterCCards)
+        let compCards = [...computerHand]
+
+        filterCCards.forEach(element => {
+            compCards = compCards.filter(compCard => compCard != element)
+        });
+        // console.log(compCards)
+        const newCompHand = compCards
+        setComputerHand(newCompHand)
+
+        if (filterCCards.length > 0) {
+            console.log("correct guess!")
+            const newPlayerHand = [...playerHand, ...filterCCards]
+            setPlayerHand(newPlayerHand)
+            // checkForFourOfAKind(playerHand)
+        } else {
+            drawNewCard("user")
+            setPlayerTurn(!playerTurn)
         }
+    }
     }
 
    
@@ -81,11 +82,16 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
             filterPCards.forEach(element => {
                 playerCards = playerCards.filter(playCard => playCard != element)
             });
-            setPlayerHand(playerCards)
+
+            const newCPlayerHand = playerCards
+
+            setPlayerHand(newCPlayerHand)
+            console.log(newCPlayerHand)
     
             if (filterPCards.length > 0) {
                 console.log("computer is correct")
-                setComputerHand([...computerHand, ...filterPCards])
+                const newCComputerHand = [...computerHand, ...filterPCards]
+                setComputerHand(newCComputerHand)
                 setTimeout(() => {
                     handleCPUTurn()
                 },2000)
@@ -108,7 +114,7 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
                 handleCPUTurn()
             }, 2000)
         }
-    }, [playerTurn]) 
+    }, [!playerTurn]) 
 
     function handleCPUTurn(){
         let randomCard = computerHand[Math.floor(Math.random() * computerHand.length)]
