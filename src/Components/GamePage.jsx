@@ -42,13 +42,13 @@ export default function DeckofCards({player, playerTurn, setPlayerTurn, computer
         }
         if (cb === "user"){
           console.log("user should be drawing")
-          console.log(res.cards[0])
-          console.log(prevPlayerHand => [...prevPlayerHand, res.cards[0]])
-          setPlayerHand(prevPlayerHand => [...prevPlayerHand, res.cards[0]])
+          const prevPlayerHand = [...playerHand, res.cards[0]]
+          setPlayerHand(prevPlayerHand)
           console.log(playerHand)
         }else if (cb === "computer") {
           console.log("Computer should be drawing")
-          setComputerHand(prevComputerHand => [...prevComputerHand, res.cards[0]])
+          const prevComputerHand = [...computerHand, res.cards[0]]
+          setComputerHand(prevComputerHand)
           console.log(computerHand)
           // setPlayerTurn(false)
         }

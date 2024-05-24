@@ -46,29 +46,29 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
     // }
     
     // function checkForFourOfAKind(hand) {
-    //     const counts = {};
-    //     const faceCards = ['Ace', 'King', 'Queen', 'Jack']; // Define face cards
+    //     const counts = {}
+    //     const faceCards = ['Ace', 'King', 'Queen', 'Jack'] // Define face cards
     
     //     // Count occurrences of each card value
     //     hand.forEach(card => {
-    //       const value = card.value;
+    //       const value = card.value
     //       if (!counts[value]) {
-    //         counts[value] = 1;
+    //         counts[value] = 1
     //       } else {
-    //         counts[value]++;
+    //         counts[value]++
     //       }
-    //     });
+    //     })
     
     //     // Check if any value appears exactly four times
     //     for (const value in counts) {
     //       if (counts[value] === 4 &&!faceCards.includes(value)) {
-    //         console.log(`${value} of a kind found`);
+    //         console.log(`${value} of a kind found`)
     //         console.log(value)
     //         console.log(counts)
-    //         return true; // Return true if four of a kind is found
+    //         return true // Return true if four of a kind is found
     //       }
     //     }
-    //     return false; // No four of a kind found
+    //     return false // No four of a kind found
     //   }
 
 
@@ -86,12 +86,13 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
             const newCPlayerHand = playerCards
 
             setPlayerHand(newCPlayerHand)
-            console.log(newCPlayerHand)
+            console.log(`Player hand after correct guess from computer ${newCPlayerHand[0]}`)
     
             if (filterPCards.length > 0) {
                 console.log("computer is correct")
                 const newCComputerHand = [...computerHand, ...filterPCards]
                 setComputerHand(newCComputerHand)
+                console.log(`Computer hand after correct guess ${newCComputerHand[0]}`)
                 setTimeout(() => {
                     handleCPUTurn()
                 },2000)
@@ -108,13 +109,15 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
         
     }
 
+    // console.log(playerTurn)
+
     useEffect( () => {
         if (playerTurn === false) {
             setTimeout(() => {
                 handleCPUTurn()
             }, 2000)
         }
-    }, [!playerTurn]) 
+    }, [playerTurn === false]) 
 
     function handleCPUTurn(){
         let randomCard = computerHand[Math.floor(Math.random() * computerHand.length)]
