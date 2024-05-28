@@ -40,18 +40,34 @@ export default function DeckofCards({player, playerTurn, setPlayerTurn, computer
         if (res.cards.length === 0){
           return navigate("/scorecard")
         }
-        if (cb === "user"){
-          console.log("user should be drawing")
-          const prevPlayerHand = [...playerHand, res.cards[0]]
-          setPlayerHand(prevPlayerHand)
-          console.log(playerHand)
-        }else if (cb === "computer") {
-          console.log("Computer should be drawing")
-          const prevComputerHand = [...computerHand, res.cards[0]]
-          setComputerHand(prevComputerHand)
-          console.log(computerHand)
-          // setPlayerTurn(false)
+        const drawnCard = res.cards[0];
+        const drawnCardValue = drawnCard.value;
+        const drawnCardExists = cb === "user" 
+          ? playerHand.some(card => card.value === drawnCardValue) 
+          : computerHand.some(card => card.value === drawnCardValue);
+
+        if (!drawnCardExists) {
+          if (cb === "user") {
+            console.log("user should be drawing")
+            setPlayerHand(prevPlayerHand => [...prevPlayerHand, drawnCard]);
+          } else if (cb === "computer") {
+            console.log("Computer should be drawing") 
+            setComputerHand(prevComputerHand => [...prevComputerHand, drawnCard]);
+            // setPlayerTurn(false)
+          }
+        } else {
+          // Draw another card if the drawn card already exists in the hand
+          drawNewCard(cb);
         }
+        // old code
+        // if (cb === "user"){
+        //   console.log("user should be drawing")
+        //   setPlayerHand(prevPlayerHand => [...prevPlayerHand, res.cards[0]])
+        // }else if (cb === "computer") {
+        //   console.log("Computer should be drawing") 
+        //   setComputerHand(prevComputerHand => [...prevComputerHand, res.cards[0]])
+        //   // setPlayerTurn(false)
+        // }
       })
   }
 

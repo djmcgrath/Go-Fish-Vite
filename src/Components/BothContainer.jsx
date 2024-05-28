@@ -9,28 +9,43 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
         if(playerTurn === false){
             alert(`It is the computer's turn`)
         } else{
-        const filterCCards = computerHand.filter((computerCard) => {
-            return computerCard.value === card})
+            const filterCCards = computerHand.filter(computerCard => computerCard.value === card);
+        
+            if (filterCCards.length > 0) {
+                console.log("User correct guess")
+                const newPlayerHand = [...playerHand, ...filterCCards];
+                setPlayerHand(newPlayerHand);
+                console.log(playerHand)
+                const newCompHand = computerHand.filter(computerCard => computerCard.value !== card);
+                setComputerHand(newCompHand);
+                console.log(computerHand)
+            } else {
+                // console.log("User incorrect guess")
+                drawNewCard("user");
+                setPlayerTurn(false);
+            }
+        // const filterCCards = computerHand.filter((computerCard) => {
+        //     return computerCard.value === card})
 
-        console.log(filterCCards)
-        let compCards = [...computerHand]
+        // console.log(filterCCards)
+        // let compCards = [...computerHand]
 
-        filterCCards.forEach(element => {
-            compCards = compCards.filter(compCard => compCard != element)
-        });
-        // console.log(compCards)
-        const newCompHand = compCards
-        setComputerHand(newCompHand)
+        // filterCCards.forEach(element => {
+        //     compCards = compCards.filter(compCard => compCard != element)
+        // });
+        // // console.log(compCards)
+        // const newCompHand = compCards
+        // setComputerHand(newCompHand)
 
-        if (filterCCards.length > 0) {
-            console.log("correct guess!")
-            const newPlayerHand = [...playerHand, ...filterCCards]
-            setPlayerHand(newPlayerHand)
-            // checkForFourOfAKind(playerHand)
-        } else {
-            drawNewCard("user")
-            setPlayerTurn(!playerTurn)
-        }
+        // if (filterCCards.length > 0) {
+        //     console.log("correct guess!")
+        //     const newPlayerHand = [...playerHand, ...filterCCards]
+        //     setPlayerHand(newPlayerHand)
+        //     // checkForFourOfAKind(playerHand)
+        // } else {
+        //     drawNewCard("user")
+        //     setPlayerTurn(false)
+        // }
     }
     }
 
@@ -73,38 +88,50 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
 
 
     function compareComputerHand (card) {
-        if (playerTurn === false){
-            const filterPCards = playerHand.filter((playerCard) => {
-                return playerCard.value === card})
-    
-            let playerCards = [...playerHand]
-    
-            filterPCards.forEach(element => {
-                playerCards = playerCards.filter(playCard => playCard != element)
-            });
-
-            const newCPlayerHand = playerCards
-
-            setPlayerHand(newCPlayerHand)
-            console.log(`Player hand after correct guess from computer ${newCPlayerHand[0]}`)
-    
+        if (playerTurn === true){
+            alert(`It is ${player.name}'s turn`)
+        } else {
+            const filterPCards = playerHand.filter(playerCard => playerCard.value === card);
+        
             if (filterPCards.length > 0) {
-                console.log("computer is correct")
-                const newCComputerHand = [...computerHand, ...filterPCards]
-                setComputerHand(newCComputerHand)
-                console.log(`Computer hand after correct guess ${newCComputerHand[0]}`)
+                console.log("computer correct guess")
+                console.log(filterPCards)
+                const newPlayerHand = playerHand.filter(playerCard => playerCard.value !== card);
+                setPlayerHand(newPlayerHand);
+                console.log(playerHand)
                 setTimeout(() => {
+                    const newComputerHand = [...computerHand, ...filterPCards];
+                    setComputerHand(newComputerHand);
+                    console.log(computerHand)
                     handleCPUTurn()
                 },2000)
-                // setPlayerTurn(false)
-                // console.log("set player turn to false")
-                // checkForFourOfAKind(computerHand)
+            // const filterPCards = playerHand.filter((playerCard) => {
+            //     return playerCard.value === card})
+    
+            // let playerCards = [...playerHand]
+    
+            // filterPCards.forEach(element => {
+            //     playerCards = playerCards.filter(playCard => playCard != element)
+            // });
+
+            // const newCPlayerHand = playerCards
+
+            // setPlayerHand(newCPlayerHand)
+    
+            // if (filterPCards.length > 0) {
+            //     console.log("computer is correct")
+            //     const newCComputerHand = [...computerHand, ...filterPCards]
+            //     setComputerHand(newCComputerHand)
+            //     setTimeout(() => {
+            //         handleCPUTurn()
+            //     },2000)
+            //     // setPlayerTurn(false)
+            //     // console.log("set player turn to false")
+            //     // checkForFourOfAKind(computerHand)
             } else {
                 drawNewCard("computer")
                 setPlayerTurn(true)
             }
-        } else {
-            alert(`It is ${player.name}'s turn`)
         }
         
     }
@@ -117,7 +144,7 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
                 handleCPUTurn()
             }, 2000)
         }
-    }, [playerTurn === false]) 
+    }, [playerTurn]) 
 
     function handleCPUTurn(){
         let randomCard = computerHand[Math.floor(Math.random() * computerHand.length)]
