@@ -53,13 +53,11 @@ export default function DeckofCards({player, playerTurn, setPlayerTurn, computer
           } else if (cb === "computer") {
             console.log("Computer should be drawing") 
             setComputerHand(prevComputerHand => [...prevComputerHand, drawnCard]);
-            // setPlayerTurn(false)
           }
         } else {
-          // Draw another card if the drawn card already exists in the hand
           drawNewCard(cb);
         }
-        // old code
+        // old Code:
         // if (cb === "user"){
         //   console.log("user should be drawing")
         //   setPlayerHand(prevPlayerHand => [...prevPlayerHand, res.cards[0]])

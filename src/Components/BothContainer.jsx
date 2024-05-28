@@ -15,15 +15,15 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
                 console.log("User correct guess")
                 const newPlayerHand = [...playerHand, ...filterCCards];
                 setPlayerHand(newPlayerHand);
-                console.log(playerHand)
+                checkForFourOfAKind(playerHand)
                 const newCompHand = computerHand.filter(computerCard => computerCard.value !== card);
                 setComputerHand(newCompHand);
                 console.log(computerHand)
             } else {
-                // console.log("User incorrect guess")
                 drawNewCard("user");
                 setPlayerTurn(false);
             }
+        // old Code:
         // const filterCCards = computerHand.filter((computerCard) => {
         //     return computerCard.value === card})
 
@@ -46,8 +46,7 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
         //     drawNewCard("user")
         //     setPlayerTurn(false)
         // }
-    }
-    }
+    }}
 
    
     // function checkPlayerHand(value){
@@ -60,31 +59,30 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
     //         }
     // }
     
-    // function checkForFourOfAKind(hand) {
-    //     const counts = {}
-    //     const faceCards = ['Ace', 'King', 'Queen', 'Jack'] // Define face cards
+    function checkForFourOfAKind(hand) {
+        const counts = {}
+        const faceCards = ['Ace', 'King', 'Queen', 'Jack'] // Define face cards
     
-    //     // Count occurrences of each card value
-    //     hand.forEach(card => {
-    //       const value = card.value
-    //       if (!counts[value]) {
-    //         counts[value] = 1
-    //       } else {
-    //         counts[value]++
-    //       }
-    //     })
+        // Count occurrences of each card value
+        hand.forEach(card => {
+          const value = card.value
+          if (!counts[value]) {
+            counts[value] = 1
+          } else {
+            counts[value]++
+          }
+        })
     
-    //     // Check if any value appears exactly four times
-    //     for (const value in counts) {
-    //       if (counts[value] === 4 &&!faceCards.includes(value)) {
-    //         console.log(`${value} of a kind found`)
-    //         console.log(value)
-    //         console.log(counts)
-    //         return true // Return true if four of a kind is found
-    //       }
-    //     }
-    //     return false // No four of a kind found
-    //   }
+        for (const value in counts) {
+          if (counts[value] === 4 &&!faceCards.includes(value)) {
+            console.log(`${value} of a kind found`)
+            console.log(value)
+            console.log(counts)
+            return true // Return true if four of a kind is found
+          }
+        }
+        return false // No four of a kind found
+      }
 
 
     function compareComputerHand (card) {
@@ -102,9 +100,10 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
                 setTimeout(() => {
                     const newComputerHand = [...computerHand, ...filterPCards];
                     setComputerHand(newComputerHand);
-                    console.log(computerHand)
+                    checkForFourOfAKind(computerHand)
                     handleCPUTurn()
                 },2000)
+            // old Code:
             // const filterPCards = playerHand.filter((playerCard) => {
             //     return playerCard.value === card})
     
@@ -133,10 +132,7 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
                 setPlayerTurn(true)
             }
         }
-        
-    }
-
-    // console.log(playerTurn)
+     }
 
     useEffect( () => {
         if (playerTurn === false) {
