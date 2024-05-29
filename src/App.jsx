@@ -19,6 +19,7 @@ function App() {
   const [playerTurn, setPlayerTurn] = useState(true)
   const [playerHand, setPlayerHand] = useState([])
   const [computerHand, setComputerHand] = useState([])
+  const [score, setScore] = useState(0)
 
   useEffect(() =>{
     fetch("http://localhost:3000/players")
@@ -37,7 +38,7 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<NavLayout />}>
         <Route index element={<PlayerPage playerInfo={playerInfo} handleNewPlayer={handleNewPlayer} setPlayer={setPlayer}/>} />
-        <Route path="/game" element={<GamePage playerHand={playerHand} setPlayerHand={setPlayerHand} computerHand={computerHand} setComputerHand={setComputerHand} player={player} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn}/>} />
+        <Route path="/game" element={<GamePage playerHand={playerHand} setPlayerHand={setPlayerHand} computerHand={computerHand} setComputerHand={setComputerHand} player={player} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} score={score} setScore={setScore}/>} />
         <Route path="/scorecard" element={<ScoreCard playerHand={playerHand} setPlayer={setPlayer} setPlayerHand={setPlayerHand} setPlayerInfo={setPlayerInfo} computerHand={computerHand} setComputerHand={setComputerHand} player={player} playerInfo={playerInfo}/>} />
       </Route>
     )

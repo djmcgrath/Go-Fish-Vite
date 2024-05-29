@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {useNavigate} from "react-router-dom"
 import BothContainer from './BothContainer'
 
-export default function DeckofCards({player, playerTurn, setPlayerTurn, computerHand, setComputerHand, playerHand, setPlayerHand}) {
+export default function DeckofCards({player, playerTurn, setPlayerTurn, computerHand, setComputerHand, playerHand, setPlayerHand, score, setScore}) {
   const [deckId, setDeckId] = useState("")
   
   const navigate = useNavigate()
@@ -43,8 +43,8 @@ export default function DeckofCards({player, playerTurn, setPlayerTurn, computer
         const drawnCard = res.cards[0];
         const drawnCardValue = drawnCard.value;
         const drawnCardExists = cb === "user" 
-          ? playerHand.some(card => card.value === drawnCardValue) 
-          : computerHand.some(card => card.value === drawnCardValue);
+          ? playerHand.some(card => card.value === drawnCardValue && card.suit === drawnCard.suit) 
+          : computerHand.some(card => card.value === drawnCardValue && card.suit === drawnCard.suit);
 
         if (!drawnCardExists) {
           if (cb === "user") {
@@ -73,7 +73,7 @@ export default function DeckofCards({player, playerTurn, setPlayerTurn, computer
     <>
       <div>
         <button type="button" className="btn btn-info" onClick={displayNewDeck}>Click to Start:</button>
-        <BothContainer computerHand={computerHand} playerHand={playerHand} drawNewCard={drawNewCard} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} player={player} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn}/>
+        <BothContainer computerHand={computerHand} playerHand={playerHand} drawNewCard={drawNewCard} setComputerHand={setComputerHand} setPlayerHand={setPlayerHand} player={player} playerTurn={playerTurn} setPlayerTurn={setPlayerTurn} score={score} setScore={setScore}/>
       </div>
     </>
   )

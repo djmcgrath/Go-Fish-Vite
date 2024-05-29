@@ -3,7 +3,7 @@ import HandCard from './PlayersHand/HandCard'
 import CPCard from './ComputerHand/CPCard'
 import { useEffect } from 'react'
 
-export default function BothContainer({ playerHand, computerHand, drawNewCard, setPlayerHand, setComputerHand , player, playerTurn, setPlayerTurn}) {
+export default function BothContainer({ playerHand, computerHand, drawNewCard, setPlayerHand, setComputerHand , player, playerTurn, setPlayerTurn, score, setScore}) {
 
     function comparePlayerHand (card) {
         if(playerTurn === false){
@@ -75,9 +75,17 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
     
         for (const value in counts) {
           if (counts[value] === 4 &&!faceCards.includes(value)) {
-            console.log(`${value} of a kind found`)
-            console.log(value)
-            console.log(counts)
+            console.log(`four ${value}'s found`)
+            const newHand = hand.filter(card => card.value !== value)
+
+            if (hand === playerHand){
+                setPlayerHand(newHand)
+            } else if (hand === computerHand){
+                setPlayerHand(newHand)
+            }
+
+            setScore(score => score +1)
+            console.log(score)
             return true // Return true if four of a kind is found
           }
         }
@@ -100,6 +108,7 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
                 setTimeout(() => {
                     const newComputerHand = [...computerHand, ...filterPCards];
                     setComputerHand(newComputerHand);
+                    console.log(computerHand)
                     checkForFourOfAKind(computerHand)
                     handleCPUTurn()
                 },2000)
