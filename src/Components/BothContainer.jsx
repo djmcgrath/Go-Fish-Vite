@@ -23,41 +23,8 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
                 drawNewCard("user");
                 setPlayerTurn(false);
             }
-        // old Code:
-        // const filterCCards = computerHand.filter((computerCard) => {
-        //     return computerCard.value === card})
-
-        // console.log(filterCCards)
-        // let compCards = [...computerHand]
-
-        // filterCCards.forEach(element => {
-        //     compCards = compCards.filter(compCard => compCard != element)
-        // });
-        // // console.log(compCards)
-        // const newCompHand = compCards
-        // setComputerHand(newCompHand)
-
-        // if (filterCCards.length > 0) {
-        //     console.log("correct guess!")
-        //     const newPlayerHand = [...playerHand, ...filterCCards]
-        //     setPlayerHand(newPlayerHand)
-        //     // checkForFourOfAKind(playerHand)
-        // } else {
-        //     drawNewCard("user")
-        //     setPlayerTurn(false)
-        // }
     }}
 
-   
-    // function checkPlayerHand(value){
-    //     const cardSet = playerHand.filter((card)=>{
-    //         return card.value == value
-    //     })
-    //     console.log(cardSet)
-    //         if (cardSet.length()>3){
-    //             handleRemove4(value)
-    //         }
-    // }
     
     function checkForFourOfAKind(hand) {
         const counts = {}
@@ -112,30 +79,6 @@ export default function BothContainer({ playerHand, computerHand, drawNewCard, s
                     checkForFourOfAKind(computerHand)
                     handleCPUTurn()
                 },2000)
-            // old Code:
-            // const filterPCards = playerHand.filter((playerCard) => {
-            //     return playerCard.value === card})
-    
-            // let playerCards = [...playerHand]
-    
-            // filterPCards.forEach(element => {
-            //     playerCards = playerCards.filter(playCard => playCard != element)
-            // });
-
-            // const newCPlayerHand = playerCards
-
-            // setPlayerHand(newCPlayerHand)
-    
-            // if (filterPCards.length > 0) {
-            //     console.log("computer is correct")
-            //     const newCComputerHand = [...computerHand, ...filterPCards]
-            //     setComputerHand(newCComputerHand)
-            //     setTimeout(() => {
-            //         handleCPUTurn()
-            //     },2000)
-            //     // setPlayerTurn(false)
-            //     // console.log("set player turn to false")
-            //     // checkForFourOfAKind(computerHand)
             } else {
                 drawNewCard("computer")
                 setPlayerTurn(true)
